@@ -65,28 +65,28 @@ class Install extends Command
             }
         }
 
-        $sourceBinary = "$packageDirectory/$binary";
-        if (!$fs->exists($sourceBinary)) {
+        if (!$fs->exists("$packageDirectory/$binary")) {
             $output->writeln("Package $package/$binary is broken, missing binary");
             return;
         }
-        $binary = __DIR__ . "/../../bin/$binary";
+        $binaryFile = __DIR__ . "/../../bin/$binary";
         if ($version !== 'latest') {
-            $binary .= "@$version";
+            $binaryFile .= "@$version";
         }
 
         $script = <<<EOF
 #!/usr/bin/env sh
 # This file is generated, do not edit
 
+__DIRNAME=$(dirname $(readlink -f "$0"))
 export VERSION="$version"
 
-$sourceBinary "\$@"
+\$__DIRNAME/../packages/$package/$binary "\$@"
 EOF;
 
-        $fs->dumpFile($binary, $script);
+        $fs->dumpFile($binaryFile, $script);
 
         // Add execute permissions
-        $fs->chmod($binary, 0755);
+        $fs->chmod($binaryFile, 0755);
     }
 }

@@ -1,15 +1,14 @@
 #!/usr/bin/env sh
 
-# Absolute path to this script
-SCRIPT=$(readlink -f "$0")
 # Absolute path this script is in
-BASEDIR=$(dirname "$SCRIPT")
+__DIRNAME=$(dirname $(readlink -f "$0"))
 
 docker run \
     -it \
     --rm \
     --name boxie \
-    -v "$BASEDIR/..":/app \
+    -v "$__DIRNAME/..":/app \
+    -v /var/run/docker.sock:/var/run/docker.sock \
     -w /app \
-    php:8.4-cli \
+    boxie \
     php src/app.php "$@"

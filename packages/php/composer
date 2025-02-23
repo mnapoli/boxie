@@ -7,5 +7,5 @@ docker run \
     --volume "$PWD":/app \
     -w /app \
     --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
-    dpm/composer:$VERSION \
+    boxie/composer:$VERSION \
     composer "$@"

@@ -10,7 +10,7 @@ if [ "$PHP_VERSION" = "latest" ]; then
 fi
 
 docker build \
-    --tag dpm/composer:$VERSION \
+    --tag boxie/composer:$VERSION \
     --build-arg PHP_VERSION=$PHP_VERSION \
     --file composer.Dockerfile \
     .
