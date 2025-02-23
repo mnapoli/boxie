@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+docker run \
+    -it \
+    --rm \
+    --name composer \
+    --volume "$PWD":/app \
+    -w /app \
+    --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
+    dpm/composer:$VERSION \
+    composer "$@"

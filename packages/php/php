@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+PHP_VERSION=$VERSION
+# If latest, we set the latest PHP version explicitly because the `php` image doesn't have `latest-cli` tag
+if [ "$PHP_VERSION" = "latest" ]; then
+    PHP_VERSION=8.4
+fi
+
+docker run \
+    -it \
+    --rm \
+    --name php \
+    -v "$PWD":/app \
+    -w /app \
+    -p 8000:8000 \
+    php:$PHP_VERSION-cli \
+    php "$@"
