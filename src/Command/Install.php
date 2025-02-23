@@ -34,6 +34,10 @@ class Install extends Command
         }
         $version = $input->getArgument('version');
 
+        if (! $fs->exists("$packageDirectory/info.json")) {
+            $output->writeln("Package $package is broken, missing info.json");
+            return 1;
+        }
         $packageInfo = json_decode(file_get_contents("$packageDirectory/info.json"), true, 512, JSON_THROW_ON_ERROR);
         $binaries = $packageInfo['bin'] ?? [];
 
@@ -88,5 +92,7 @@ EOF;
 
         // Add execute permissions
         $fs->chmod($binaryFile, 0755);
+
+        $output->writeln("Installed $binary@$version");
     }
 }

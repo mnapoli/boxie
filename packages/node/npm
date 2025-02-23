@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# Mount the NPM cache directory
+docker run \
+    -it \
+    --rm \
+    --name npm \
+    -v "$PWD":/app \
+    -v ${NPM_CACHE:-$HOME/.npm}:/root/.npm \
+    -w /app \
+    node:$VERSION \
+    npm "$@"

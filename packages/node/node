@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+docker run \
+    -it \
+    --rm \
+    --name node \
+    -v "$PWD":/app \
+    -w /app \
+    node:$VERSION \
+    node "$@"
