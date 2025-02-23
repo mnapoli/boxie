@@ -16,15 +16,17 @@ Read "how it works" below for more details.
 The only thing you need is Docker.
 
 ```bash
+# (for development you can use a different directory)
 mkdir /opt/boxie
 cd /opt/boxie
 git clone https://github.com/mnapoli/boxie.git .
+# Build the Boxie image
 make build
 ```
 
 Now add `/opt/boxie/bin` to your `PATH`.
 
-> In the future, the goal is this:
+> In the future, the goal is:
 > 
 > - Boxie would be distributed as a Docker image (`boxie`)
 > - Install by creating a script in `/usr/local/bin` that runs the Docker image:
