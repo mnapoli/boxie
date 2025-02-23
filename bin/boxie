@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# Absolute path to this script
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in
+BASEDIR=$(dirname "$SCRIPT")
+
+docker run \
+    -it \
+    --rm \
+    --name boxie \
+    -v "$BASEDIR/..":/app \
+    -w /app \
+    php:8.4-cli \
+    php src/app.php "$@"
