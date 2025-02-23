@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Should we expose some ports by default? E.g. 3000 or 8080?
+
 docker run \
     -it \
     --rm \
