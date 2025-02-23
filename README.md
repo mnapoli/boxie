@@ -13,6 +13,8 @@ Read "how it works" below for more details.
 
 ## Installation
 
+The only thing you need is Docker.
+
 ```bash
 mkdir /opt/boxie
 cd /opt/boxie
